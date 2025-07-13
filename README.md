@@ -1,5 +1,21 @@
 code for FuseUNet: A Multi-Scale Feature Fusion Method for U-like Networks. 
 
+### ⚠️ Correction Notice (July 2025)
+
+We identified a **unit conversion mistake** in the reported FLOPs values caused by inconsistent input dimensions in the test script.
+
+- Our FLOPs analysis was first done on a test case using **2D input**, where the units were correct.
+- However, when switching to a **3D input** test case provided in the example code, we overlooked a change in FLOPs unit scale.
+- As a result, **all reported FLOPs were under-estimated by a factor of 10**.
+
+**Important:** This issue **does *not* affect any experimental conclusions**, because:
+
+- The **relative FLOPs across models and variants remain exactly the same**.
+- All performance comparisons and trends in the paper remain valid.
+
+We sincerely apologize for the oversight. A correction notice will also be added to the corresponding arXiv version soon.
+
+
 ## Abstract
 
 Medical image segmentation is a critical task in computer vision, with UNet serving as a milestone architecture. The typical component of UNet family is the skip connection, however, their skip connections face two significant limitations: (1) they lack effective interaction between features at different scales, and (2) they rely on simple concatenation or addition operations, which constrain efficient information integration. While recent improvements to UNet have focused on enhancing encoder and decoder capabilities, these limitations remain overlooked. To overcome these challenges, we propose a novel multi-scale feature fusion method that reimagines the UNet decoding process as solving an initial value problem (IVP), treating skip connections as discrete nodes. By leveraging principles from the linear multistep method, we propose an adaptive ordinary differential equation method to enable effective multi-scale feature fusion. Our approach is independent of encoder and decoder designs, making it applicable to any U-like network. Experiments on ACDC, KiTS2023, MSD brain tumor, and ISIC2017/2018 skin lesion segmentation datasets demonstrate improved feature utilization, reduced network parameters, and maintained high performance.
